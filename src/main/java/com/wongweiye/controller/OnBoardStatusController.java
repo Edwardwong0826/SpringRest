@@ -13,7 +13,6 @@ import com.wongweiye.service.OnBoardStatusService;
 
 @RequestMapping(path = "/v1/configurations", produces = "application/json")
 @RestController
-@SuppressWarnings("rawtypes")
 public class OnBoardStatusController {
 
     @Autowired
@@ -24,7 +23,6 @@ public class OnBoardStatusController {
 
         SystemParameterIntDTO result= onBoardStatusSerivce.findOnBoardStatus(ParameterConstant.PAR_GENERAL,ParameterConstant.PAR_CHECK_IN_STATUS);
 
-
         if(result != null) {
             return ResponseEntity.ok().body(result);
         }
@@ -33,7 +31,6 @@ public class OnBoardStatusController {
             return ResponseEntity.notFound().build();
 
         }
-
 
     }
 

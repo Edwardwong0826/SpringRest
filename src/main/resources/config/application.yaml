@@ -1,0 +1,48 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+
+#debug: true
+---
+# yaml format xxx: xxxx
+# after : need to have one space
+server:
+  port: 8081
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: destiny61376554
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  profiles: dev
+---
+server:
+  port: 8082
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: destiny61376554
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  profiles: test
+
+
+#  spring.datasource.url=jdbc:mysql://localhost:3306/demo?useTimezone=true&serverTimezone=UTC
+#  spring.datasource.username=root
+#  spring.datasource.password=destiny61376554
+#  spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
+
+# in spring boot auto configuration, it will go to org.springframework.boot:spring-boot-autoconfigure META/INF package/ spring.factories
+# to find xxxAutoConfiguration, xxxProperties and go inside based on the @Conditionalxxx to assert is it require to load the bean into IOC

@@ -11,12 +11,12 @@ import java.util.Optional;
 
 
 public interface SystemParameterRepository extends JpaRepository<SystemParameter, String> {
+
     //@Query("SELECT new com.hgbu.oracle.ohc.spms.dto.ShipPropertyDetailDTO (a.parValue, b.parValue) FROM SystemParameter a, SystemParameter b WHERE a.parName = ?1 AND b.parName = ?2")
     //Optional<ShipPropertyDetailDTO> findParValueByParName(String shipName, String companyName);
-
     Optional<SystemParameter> findByParName(String name);
 
-    @Query("SELECT new com.wongweiye.dto.SystemParameterIntDTO (cast(a.parValue as int), '') FROM SystemParameter a WHERE a.parGroup = ?1 AND a.parName = ?2")
+    @Query("SELECT new com.wongweiye.dto.SystemParameterIntDTO (cast(a.parValue as int), a.parName as String) FROM SystemParameter a WHERE a.parGroup = ?1 AND a.parName = ?2")
     SystemParameterIntDTO findGroupAndNameIntValue(String parGroup, String parName);
 
 }
