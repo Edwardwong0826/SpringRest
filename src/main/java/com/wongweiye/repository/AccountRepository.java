@@ -9,6 +9,6 @@ import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    Optional<Account> findByID(Integer id);
+//    Optional<Account> findByID(Integer id);
 
 }

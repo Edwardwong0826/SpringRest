@@ -7,6 +7,8 @@ import com.wongweiye.service.EmployeeEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -81,6 +83,15 @@ public class EmployeeEmailController {
         }
     }
 
+    @GetMapping(path = "/check/{employeeID}")
+    public ResponseEntity<List<Email>> checkEmailAndUpdate(@PathVariable long employeeID) {
+
+
+        List<Email> emails = employeeEmailService.checkEmail(employeeID);
+
+        return ResponseEntity.ok().body(emails);
+
+    }
 
 
 }

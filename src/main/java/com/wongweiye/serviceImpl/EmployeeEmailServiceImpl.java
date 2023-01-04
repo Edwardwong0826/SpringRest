@@ -85,5 +85,12 @@ public class EmployeeEmailServiceImpl implements EmployeeEmailService {
         });
     }
 
+    @Override
+    public List<Email> checkEmail(long employeeId) {
+        Optional<Employee> byId = employeeRepository.findById(employeeId);
+
+        return byId.get().getEmails();
+    }
+
 
 }
