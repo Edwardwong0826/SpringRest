@@ -19,6 +19,12 @@ public class Address {
     @Column(name = "address")
     private String addressName;
 
+    // this is a bidirectional association
+    // owning side tracked by Hibernate means the side of the relation that have/owns the foreign key in the database
+    // by annotate this entity as many to one, making this entity address as the owning side, also owning side mostly will have @JoinColumn annotation
+    // @JoinColumn will generate a column email_id (refer as foreign key) in this entity class point to email entity class primary key
+    // mark the many-to-one side as the owning side will be the good practice
+    // to link the address to the new email, need to call address.setEmail(email) because that is the owning side of the relation
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "email_id")
     @JsonBackReference

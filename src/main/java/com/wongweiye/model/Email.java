@@ -27,6 +27,9 @@ public class Email  {
     @JsonBackReference
     private Employee employee;
 
+    // this is a bidirectional association
+    // is possible to mark the one-to-many side as the owning side, and the many to one as the inverse side, but is not good practice
+    // mappedBy attribute here mark this entity email as the inverse side
     @OneToMany(mappedBy="email", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Address> emailAddress = new ArrayList<>();;
