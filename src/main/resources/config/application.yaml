@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   profiles:
-    active: dev
+    active: dev2
 
 #debug: true
 ---
@@ -38,7 +38,21 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   profiles: test
 
-
+---
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;
+    username: sa
+    password: 123456
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      # http://localhost:8080/h2 follow path above to access the h2 endpoint
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  profiles: dev2
 #  spring.datasource.url=jdbc:mysql://localhost:3306/demo?useTimezone=true&serverTimezone=UTC
 #  spring.datasource.username=root
 #  spring.datasource.password=destiny61376554
