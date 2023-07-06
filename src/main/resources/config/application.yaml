@@ -2,7 +2,18 @@ server:
   port: 8080
 spring:
   profiles:
-    active: dev2
+    active: test
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
 
 #debug: true
 ---
@@ -24,15 +35,17 @@ spring:
   profiles: dev
 ---
 server:
-  port: 8082
+  port: 8081
+  #port: 8082
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type: TRACE
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/springdemo?useTimezone=true&serverTimezone=UTC
-    username: root
+    #url: jdbc:mysql://localhost:3306/springdemo?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://springdemo.cairqwqbf3oy.ap-southeast-1.rds.amazonaws.com:3306/springdemo?useTimezone=true&serverTimezone=UTC
+    username: admin
     password: 61376554
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

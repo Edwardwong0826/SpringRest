@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: spring-test-app
+spec:
+  selector:
+    matchLabels:
+      app: spring-test-app
+  replicas: 3 # Number of replicas that will be created for this deployment
+  strategy:
+    type: RollingUpdate #rolling update is the default strategy
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: spring-test-app
+    spec:
+      containers:
+        - name: spring-test-app
+          image: exrvoexmoon/spring-rest-0.0.1 # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081 # The port that the container is running on in the cluster
+#          livenessProbe:
+#            initialDelaySeconds: 20
+#            periodSeconds: 5
+#            httpGet:
+#              #scheme: HTTP
+#              path: /actuator/health/liveness
+#              port: 8081
+#              host: localhost
+          readinessProbe: # if no spring security, the probe works in docker desktop context by http and tcp type
+            initialDelaySeconds: 10
+            periodSeconds: 5
+#            httpGet:
+#              #scheme: HTTP
+#              path: /actuator/health/readiness
+#              port: 8081
+#              #host: localhost
+            tcpSocket:
+              port: 8081
