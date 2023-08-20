@@ -32,6 +32,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 // Key concepts - JWT, resource server, authorization server etc
+// https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html
+// https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+// https://spring.io/projects/spring-authorization-server
 // Normally there will be separate authorization server handles JWT authorization in large mirco-services application,
 // but in this example using self-singed JWT so no need authorization server for now, so question is when we move away from self-signed JWT?
 // answer from spring community is
@@ -56,9 +59,12 @@ public class WebSecurityConfig {
         );
     }
 
+
+    // in http://localhost:8081/api/token endpoints
+    // choose no auth in authorization, and put username and password in request body
     @Bean
     public AuthenticationManager authManager(UserDetailsService userDetailsService) {
-        var authProvider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         return new ProviderManager(authProvider);
     }
@@ -113,9 +119,9 @@ public class WebSecurityConfig {
         // use this as our JwtDecoder by using the public we set in configuration class to build and return
         return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
     }
+    // not need to run below command anymore, KeyGeneratorUtils and Jwks class will do the similar stuff for us when application boots up
+    // openssl genrsa -out keypair.pem 2048 - generate the private key
+    // openssl rsa -in keypair.pem -pubout -out public.pem - writing out public key
+    // openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem - encoded private key to pm encoded pkcs8 fromat as required by the application
 
- // openssl genrsa -out keypair.pem 2048 - generate the private key
- // openssl rsa -in keypair.pem -pubout -out public.pem - writing out public key
- // openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in keypair.pem -out private.pem - encoded private key to pm encoded pkcs8 fromat as required by the application
- //
 }
