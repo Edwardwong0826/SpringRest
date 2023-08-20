@@ -68,19 +68,6 @@
 			</exclusions>
 		</dependency>
 
-<!--		if included this, spring boot will output Using generated security password: 7ccae9f0-38be-444c-90d2-9df150bd68dc and endpoints will be 40 1Unauthorized-->
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>io.jsonwebtoken</groupId>-->
-<!--			<artifactId>jjwt</artifactId>-->
-<!--			<version>0.9.1</version>-->
-<!--		</dependency>-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -99,6 +86,42 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.4</version>
+		</dependency>
+
+		<!--		if included this, spring boot will output Using generated security password: 7ccae9f0-38be-444c-90d2-9df150bd68dc and endpoints will be 40 1Unauthorized-->
+
+
+		<!--		<dependency>-->
+		<!--			<groupId>io.jsonwebtoken</groupId>-->
+		<!--			<artifactId>jjwt</artifactId>-->
+		<!--			<version>0.9.1</version>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-jose</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.nimbusds</groupId>
+			<artifactId>nimbus-jose-jwt</artifactId>
+			<version>9.22</version>
 		</dependency>
 
 	</dependencies>
