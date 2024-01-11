@@ -49,6 +49,14 @@ spring:
     password: 61376554
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-dll=true: true
+    # https://stackoverflow.com/questions/51482774/hibernate-foreign-key-issue-error-executing-ddl-alter-table,
+    # one the thread mention maybe is the DB User didn't have the sufficient permission to alter the table using the reference, need to check
+    # change from create to update
+    hibernate.ddl-auto: update
+    naming:
+      implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   profiles: test
 
 ---
