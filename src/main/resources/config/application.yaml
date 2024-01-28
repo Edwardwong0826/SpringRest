@@ -20,7 +20,7 @@ management:
 # yaml format xxx: xxxx
 # after : need to have one space
 server:
-  port: 8081
+  port: 8082
 logging:
   level:
     org.hibernate.SQL: DEBUG
@@ -35,7 +35,7 @@ spring:
   profiles: dev
 ---
 server:
-  port: 8081
+  port: 8082
   #port: 8082
 logging:
   level:

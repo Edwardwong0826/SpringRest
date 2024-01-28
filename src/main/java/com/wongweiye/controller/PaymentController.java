@@ -1,5 +1,6 @@
 package com.wongweiye.controller;
 
+import com.wongweiye.dto.PaymentAndPaymentTransactionDTO;
 import com.wongweiye.model.PaymentAndPaymentTransaction;
 import com.wongweiye.model.PaymentTransactionAndFund;
 import com.wongweiye.serviceImpl.PaymentServiceImpl;
@@ -46,6 +47,24 @@ public class PaymentController {
         if(paymentAndFund != null)
         {
             return ResponseEntity.ok().body(paymentAndFund.get(0));
+
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @GetMapping("/payment/transaction/2")
+    public ResponseEntity<List<PaymentAndPaymentTransactionDTO>> getPaymentAndPaymentTransaction(@RequestParam("paymentId") long paymentId){
+
+
+        List<PaymentAndPaymentTransactionDTO> paymentAndFund = paymentServiceImpl.getPaymentAndPaymentTransaction2(paymentId);
+
+        if(paymentAndFund != null)
+        {
+            return ResponseEntity.ok().body(paymentAndFund);
 
         }
         else
